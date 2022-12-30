@@ -125,6 +125,44 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+#portfolio {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#filtres {
+	margin: 2rem 0 4rem 0;
+}
+
+.active {
+	background-color: #1D6154 !important;
+	color: #fff !important;
+}
+
+#filtres button {
+	min-width: 100px;
+	font-size: 16px;
+	color: #1D6154;
+	font-family: 'Syne';
+	border: #1D6154 solid 1px;
+	border-radius: 50px;
+	padding: 0.5rem;
+	cursor: pointer;
+	background-color: #fff;
+	margin: 0 0.2rem;
+}
+
+#filtres button:hover {
+	background-color: #1D6154;
+	color: #fff;
+}
+
+.filtered {
+	display: none;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
