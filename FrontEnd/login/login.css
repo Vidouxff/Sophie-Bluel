@@ -47,10 +47,14 @@ table {
 }
 /** end reset css**/
 body {
+	height: 100vh;
 	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 header {
 	display: flex;
@@ -108,9 +112,58 @@ li:hover {
 	color: #B1663C;
 }
 
+main {
+	width: 35%;
+	margin: 6rem auto auto auto;
+}
+main > * {
+	text-align: center;
+
+}
+main h2{
+	margin-bottom: 20px;
+}
+
+main form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+main input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	padding: 0 1em;
+}
+main label {
+	margin: 2em 0 0.5em 0;
+}
+
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	font-size: 1em;
+	height: 2.5em;
+	background-color: #1D6154;
+	margin : 2.5em auto 2em auto;
+	width: 200px;
+	text-align: center;
+	border-radius: 60px;
+	cursor: pointer;
+}
+
+a {
+	text-align: center;
+	text-decoration: underline;
+}
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
 }
 
