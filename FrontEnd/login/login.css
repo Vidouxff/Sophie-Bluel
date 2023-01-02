@@ -156,7 +156,7 @@ input[type="submit"]{
 	cursor: pointer;
 }
 
-a {
+#forgetPassword {
 	text-align: center;
 	text-decoration: underline;
 }
