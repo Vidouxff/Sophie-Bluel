@@ -120,13 +120,10 @@ main > * {
 	text-align: center;
 
 }
-main h2{
-	margin-bottom: 20px;
-}
 
 main form {
 	text-align: left;
-	margin-top:30px;
+	margin-top:20px;
 	display: flex;
 	flex-direction: column;
 }
