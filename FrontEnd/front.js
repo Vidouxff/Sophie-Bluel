@@ -37,6 +37,7 @@ const createButton = (button) => {
     "beforeend",
     `<button data-tag="${button.name}"> ${button.name} </button>`
   );
+
   //on récupère les boutons
   const buttons = document.querySelectorAll("#filtres button");
   //pour chaque bouton, si on clique dessus, fais une fonction

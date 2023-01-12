@@ -128,9 +128,13 @@ table {
   border-spacing: 0;
 }
 /** end reset css**/
-body {
+
+#bodyCentered {
   max-width: 1140px;
   margin: auto;
+}
+
+body {
   font-family: "Work Sans";
   font-size: 14px;
 }
@@ -174,6 +178,31 @@ h2 {
   font-size: 30px;
   color: #1d6154;
 }
+
+#editionBarre {
+  height: 30px;
+  background-color: black;
+  padding: 0.7rem 0;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+#editionBarre .edition {
+  color: white;
+  font-weight: 100;
+  margin: 0 0.7rem 0 0.5rem;
+}
+
+#editionBarre button {
+  font-family: "Work Sans";
+  background-color: white;
+  border-radius: 50px;
+  padding: 0.6rem 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 nav ul {
   display: flex;
   align-items: center;
@@ -205,14 +234,34 @@ li:hover {
 }
 #introduction h2 {
   margin-bottom: 1em;
+  margin-top: 1rem;
 }
 
 #introduction p {
   margin-bottom: 0.5em;
 }
+
+#introduction a {
+  color: black;
+}
+
+#introduction .modifierFigure {
+  margin: 0.8rem auto 0 auto;
+  width: 80%;
+  display: block;
+}
+
+.flexTitle {
+  display: flex;
+  align-items: center;
+}
+
+.flexTitle a {
+  margin-left: 1.5rem;
+}
+
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
 }
 
 #portfolio {
@@ -222,7 +271,7 @@ li:hover {
 }
 
 #filtres {
-  margin: 2rem 0 4rem 0;
+  margin: 3rem 0 4rem 0;
 }
 
 .active {
