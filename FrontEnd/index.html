@@ -17,13 +17,7 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
-  <body>
-    <div id="editionBarre">
-      <span class="edition">
-        <i class="fa-regular fa-pen-to-square"></i> Mode édition
-      </span>
-      <button id="buttonChangement">publier les changements</button>
-    </div>
+  <body id="body">
     <div id="bodyCentered">
       <header>
         <a href="/FrontEnd/index.html"
@@ -33,7 +27,9 @@
           <ul>
             <li><a href="#portfolio">projets</a></li>
             <li><a href="#contact">contact</a></li>
-            <li><a href="/FrontEnd/login/login.html">login</a></li>
+            <li>
+              <a href="/FrontEnd/login/login.html" id="loginButton">login</a>
+            </li>
             <li><img src="assets/icons/instagram.png" alt="Instagram" /></li>
           </ul>
         </nav>
@@ -41,15 +37,13 @@
       <main>
         <section id="introduction">
           <figure>
-            <img src="./assets/images/sophie-bluel.png" alt="" />
-            <a href="#" class="modifier modifierFigure">
-              <i class="fa-regular fa-pen-to-square"></i> modifier
-            </a>
+            <img
+              id="imgPresentation"
+              src="./assets/images/sophie-bluel.png"
+              alt=""
+            />
           </figure>
           <article>
-            <a href="#" class="modifier">
-              <i class="fa-regular fa-pen-to-square"></i> modifier
-            </a>
             <h2>Designer d'espace</h2>
             <p>
               Je raconte votre histoire, je valorise vos idées. Je vous
@@ -70,10 +64,7 @@
         </section>
         <section id="portfolio">
           <div class="flexTitle">
-            <h2>Mes Projets</h2>
-            <a href="#" class="modifier modifierFigure">
-              <i class="fa-regular fa-pen-to-square"></i> modifier
-            </a>
+            <h2 id="mesProjets">Mes Projets</h2>
           </div>
           <nav id="filtres">
             <button data-tag="Tous">Tous</button>
