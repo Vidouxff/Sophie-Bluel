@@ -25,8 +25,26 @@ form.addEventListener("submit", (event) => {
       if (response.status == 200) {
         return response.json();
         //sinon, affiche un message d'erreur
+      } else if (!email.value || !password.value) {
+        let error = document.querySelector("p.error");
+        if (error) {
+          error.parentNode.removeChild(error);
+        }
+        password.insertAdjacentHTML(
+          "afterend",
+          `<p class="error">*Veuillez remplir tous les champs</p>`
+        );
       } else {
-        alert("Erreur dans l'identifiant ou le mot de passe");
+        //supprimer le message d'erreur précédemment ajouté
+        let error = document.querySelector("p.error");
+        if (error) {
+          error.parentNode.removeChild(error);
+        }
+        //ajouter le message d'erreur
+        password.insertAdjacentHTML(
+          "afterend",
+          `<p class="error">*Erreur dans l'identifiant ou le mot de passe</p>`
+        );
       }
     })
 
