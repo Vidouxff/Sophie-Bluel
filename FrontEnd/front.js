@@ -189,14 +189,15 @@ document.getElementById("openModal").addEventListener("click", () => {
   document.body.insertAdjacentHTML(
     "afterbegin",
     `<aside id="modal">
-      <div id="closeModal"></div>
       <div class="modalWrapper">
-        <h2>Galerie photo</h2>
+      <i class="fa-solid fa-arrow-left" id="backToModal"></i>
+      <div id="closeModal"></div>
+        <h2 id="galleryTitle">Galerie photo</h2>
         <div id="modalGallery">
         </div>
         <span></span>
-        <button>Ajouter une photo</button>
-        <a href="#">Supprimer la galerie</a>
+        <button id="addPhoto">Ajouter une photo</button>
+        <a href="#" id="deleteGallery">Supprimer la galerie</a>
       </div>
     </aside>`
   );
@@ -207,10 +208,12 @@ document.getElementById("openModal").addEventListener("click", () => {
     const modalGallery = document.getElementById("modalGallery");
     //on ajoute dans la gallerie une figure
     modalGallery.innerHTML += `
-    <figure data-tag="${element.category.name}">
-      <img crossorigin="anonymous" src="${element.imageUrl}" alt="${element.title}"/>
-      <figcaption>Éditer</figcaption>
-    </figure>`;
+  <figure data-id="${element.id}" data-tag="${element.category.name}">
+    <img crossorigin="anonymous" src="${element.imageUrl}" alt="${element.title}"/>
+    <i class="fa-solid fa-arrows-up-down-left-right arrowMove"></i>
+    <i class="fa-solid fa-trash-can trashCan" id="trashButton" data-id="${element.id}"></i>
+    <figcaption>éditer</figcaption>
+  </figure>`;
   };
 
   fetch("http://localhost:5678/api/works")
@@ -226,6 +229,11 @@ document.getElementById("openModal").addEventListener("click", () => {
       products.forEach((product) => {
         createElement(product);
       });
+      // Ajouter un écouteur d'événement click sur tous les boutons de la poubelle
+      const trashButtons = document.querySelectorAll("#trashButton");
+      trashButtons.forEach((button) => {
+        button.addEventListener("click", (e) => deleteWork(e.target));
+      });
     })
 
     //s'il y a une erreur, va console logger err
@@ -233,14 +241,82 @@ document.getElementById("openModal").addEventListener("click", () => {
       console.log(err);
     });
   closeModal();
+  backToModal();
+  ajoutPhotoMode();
 });
 
 const closeModal = () => {
   const closeButton = document.getElementById("closeModal");
   const modal = document.getElementById("modal");
+  document.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      modal.remove();
+    }
+  });
   if (closeButton) {
     closeButton.addEventListener("click", function () {
       modal.remove();
+    });
+  }
+};
+
+const deleteWork = (element) => {
+  // Récupérer l'ID du works à supprimer
+  const workId = element.dataset.id;
+  // Envoyer une requête DELETE à l'API pour supprimer le works correspondant
+  fetch(`http://localhost:5678/api/works/${workId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${sessionStorage["token"]}`,
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
+        // Si la suppression a réussi, supprimer l'élément HTML correspondant
+        element.parentNode.remove();
+      } else {
+        // Si la suppression a échoué, afficher un message d'erreur
+        console.error("Erreur lors de la suppression");
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+const ajoutPhotoMode = () => {
+  // Code for ajoutPhotoMode here
+  const addPhotoButton = document.getElementById("addPhoto");
+  addPhotoButton.addEventListener("click", () => changeModalContent());
+};
+
+const changeModalContent = () => {
+  const addPhotoButton = document.getElementById("addPhoto");
+  const galleryTitle = document.getElementById("galleryTitle");
+  const deleteGallery = document.getElementById("deleteGallery");
+  const arrowBack = document.getElementById("backToModal");
+  modalGallery.style.display = "none";
+  addPhotoButton.innerHTML = "Valider";
+  galleryTitle.innerHTML = "Ajout photo";
+  deleteGallery.style.display = "none";
+  arrowBack.style.display = "block";
+};
+
+const backToModal = () => {
+  const backToModal = document.getElementById("backToModal");
+  if (backToModal) {
+    backToModal.addEventListener("click", function () {
+      const addPhotoButton = document.getElementById("addPhoto");
+      const galleryTitle = document.getElementById("galleryTitle");
+      const deleteGallery = document.getElementById("deleteGallery");
+      const arrowBack = document.getElementById("backToModal");
+      // Code pour remettre le design à l'état initial ici
+      modalGallery.style.display = "grid";
+      addPhotoButton.innerHTML = "Ajouter une photo";
+      galleryTitle.innerHTML = "Galerie photo";
+      deleteGallery.style.display = "block";
+      arrowBack.style.display = "none";
+      // Supprimez ou masquez les éléments ajoutés lorsque vous avez cliqué sur "Ajouter une photo"
     });
   }
 };

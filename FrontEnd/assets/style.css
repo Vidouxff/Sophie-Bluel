@@ -379,12 +379,6 @@ footer nav ul {
   background: rgba(0, 0, 0, 0.5);
 }
 
-#modal .img {
-  height: 120px;
-  width: 90px;
-  padding-bottom: 1rem;
-}
-
 #modal img {
   height: 120px;
 }
@@ -397,12 +391,26 @@ footer nav ul {
   margin-bottom: 3rem;
 }
 
+#modal figcaption {
+  margin-bottom: 0.3rem;
+  margin-top: 0.1rem;
+}
+
+#backToModal {
+  display: none;
+  position: relative;
+  top: -1rem;
+  right: 19.2rem;
+  font-size: 19px;
+  cursor: pointer;
+}
+
 #closeModal {
   width: 16px;
   height: 16px;
   position: relative;
-  bottom: 22rem;
-  left: 41.5rem;
+  top: 0rem;
+  left: 19rem;
   cursor: pointer;
 }
 
@@ -431,8 +439,9 @@ footer nav ul {
   flex-direction: column;
   overflow: auto;
   width: 700px;
-  height: 800px;
+  height: auto;
   background-color: #fff;
+  padding: 3rem 0;
 }
 
 #modalGallery {
@@ -465,7 +474,7 @@ footer nav ul {
 .modalWrapper a {
   color: #d65353;
   font-family: "Syne";
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .modalWrapper a:hover {
@@ -479,4 +488,21 @@ footer nav ul {
   background-color: black;
   width: 10px;
   left: 75px;
+}
+
+.trashCan,
+.arrowMove {
+  position: fixed;
+  margin-top: 6px;
+  margin-left: -20px;
+  padding: 3px;
+  font-size: 10px;
+  color: white;
+  background-color: #000;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.arrowMove {
+  margin-left: -39px;
 }
