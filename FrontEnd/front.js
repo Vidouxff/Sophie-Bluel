@@ -1,3 +1,4 @@
+const token = sessionStorage.getItem("token");
 const gallery = document.querySelector(".gallery");
 
 //fonction qui crée un élément "figure" dans la galerie
@@ -119,6 +120,13 @@ fetch("http://localhost:5678/api/categories")
 const boutonTous = document.querySelector('button[data-tag="Tous"]');
 boutonTous.classList.add("active");
 
+const logout = () => {
+    //suppression du token de sessionStorage
+    sessionStorage.removeItem("token");
+    //redirection vers la page de connexion
+    window.location.href = "/login/login.html";
+};
+
 //fonction pour modifier le contenu de l'index.html
 const modifierContent = () => {
     //on récupère le body
@@ -180,27 +188,11 @@ const modifierContent = () => {
     });
 };
 
-const logout = () => {
-    //suppression du token de sessionStorage
-    sessionStorage.removeItem("token");
-    //redirection vers la page de connexion
-    window.location.href = "/login/login.html";
-};
-
-//fonction pour vérifier si on est connecté
-//const loggedIn = () => {
-//on récupère le token
-const token = sessionStorage.getItem("token");
-//si la valeur de token est null, on renvoie 0
-console.log(token);
 if (token !== null) {
     modifierContent();
 }
-//};
-//loggedIn();
 
 function modalOpen() {
-    //if (loggedIn) {
     const modal = `
             <aside id="modal">
                 <div class="modalWrapper">
@@ -340,7 +332,6 @@ function modalOpen() {
         .catch((err) => {
             console.log(err);
         });
-    //}
 }
 
 const closeModal = () => {
@@ -376,11 +367,11 @@ const deleteWork = (element) => {
         });
 };
 
-function ajoutPhotoMode() {
+const ajoutPhotoMode = () => {
     changeModalContent();
-}
+};
 
-function changeModalContent() {
+const changeModalContent = () => {
     document.getElementById("addPhotoForm").style.display = "flex";
     document.getElementById("modalGallery").style.display = "none";
     document.getElementById("addPhoto").style.display = "none";
@@ -391,9 +382,9 @@ function changeModalContent() {
     document
         .getElementById("backToModal")
         .addEventListener("click", backToModal);
-}
+};
 
-function backToModal() {
+const backToModal = () => {
     document.getElementById("addPhotoForm").style.display = "none";
     document.getElementById("modalGallery").style.display = "grid";
     document.getElementById("addPhoto").style.display = "block";
@@ -401,10 +392,10 @@ function backToModal() {
     document.getElementById("galleryTitle").innerHTML = "Galerie photo";
     document.getElementById("deleteGallery").style.display = "block";
     document.getElementById("backToModal").style.display = "none";
-}
+};
 
 //fonction qui va vérifier si les datas rentrées dans le formulaire sont correctes
-function verifyData() {
+const verifyData = () => {
     const buttonCheck = document.getElementById("valider");
     const newPhoto = document.getElementById("buttonAddPhoto");
     const newTitle = document.getElementById("sendPhotoTitle");
@@ -426,9 +417,9 @@ function verifyData() {
         buttonCheck.style.backgroundColor = "#A7A7A7";
         return false;
     }
-}
+};
 
-function createNewWork() {
+const createNewWork = () => {
     //crée la nouvelle image
     const data = new FormData();
     const buttonCheck = document.getElementById("valider");
@@ -472,9 +463,9 @@ function createNewWork() {
         .catch((error) => {
             console.log(error);
         });
-}
+};
 
-function addDynamicWork() {
+const addDynamicWork = () => {
     //ajoute dynamiquement le Work en utilisant l'ancienne fonction
     fetch("http://localhost:5678/api/works")
         .then((res) => {
@@ -487,4 +478,4 @@ function addDynamicWork() {
             console.log("L'image a bien été ajoutée");
             //location.reload();
         });
-}
+};
