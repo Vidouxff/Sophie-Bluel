@@ -231,6 +231,31 @@ function modalOpen() {
         `;
     document.body.insertAdjacentHTML("afterbegin", modal);
 
+    //verifie les changement dans le form
+    document
+        .getElementById("addPhotoForm")
+        .addEventListener("change", verifyData);
+
+    //si le bouton est en couleur (valide), la fonction createNewWork est appellée quand cliqué
+    document.getElementById("valider").addEventListener("click", () => {
+        if (verifyData) {
+            createNewWork();
+        }
+    });
+
+    //récupère la croix pour fermer la modale
+    document.getElementById("closeModal").addEventListener("click", closeModal);
+
+    //récupère le bouton "ajouter une photo" et au clic sur celui-ci fais la fonction ajoutPhotoMode
+    document
+        .getElementById("addPhoto")
+        .addEventListener("click", ajoutPhotoMode);
+    document.getElementById("modal").addEventListener("click", (event) => {
+        if (event.target === document.getElementById("modal")) {
+            closeModal();
+        }
+    });
+
     const photoPreview = document.getElementById("buttonAddPhoto");
     photoPreview.addEventListener("change", (event) => {
         const file = event.target.files[0];
@@ -248,27 +273,6 @@ function modalOpen() {
             }
         } else {
             alert("image trop volumineuse");
-        }
-    });
-    //verifie les changement dans le form
-    document
-        .getElementById("addPhotoForm")
-        .addEventListener("change", verifyData);
-
-    //si le bouton est en couleur (valide), la fonction createNewWork est appellée quand cliqué
-    document.getElementById("valider").addEventListener("click", () => {
-        if (verifyData) {
-            createNewWork();
-        }
-    });
-
-    document.getElementById("closeModal").addEventListener("click", closeModal);
-    document
-        .getElementById("addPhoto")
-        .addEventListener("click", ajoutPhotoMode);
-    document.getElementById("modal").addEventListener("click", (event) => {
-        if (event.target === document.getElementById("modal")) {
-            closeModal();
         }
     });
 
@@ -476,6 +480,5 @@ const addDynamicWork = () => {
         .then((products) => {
             createFigureGallery(products[products.length - 1]);
             console.log("L'image a bien été ajoutée");
-            //location.reload();
         });
 };
